@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:mangafeed/pages/screens/home.dart';
 import 'package:mangafeed/pages/sign_up/signup.dart';
 import 'package:mangafeed/properties.dart';
 
@@ -12,9 +13,17 @@ class Signin extends StatefulWidget {
 }
 
 class _SigninState extends State<Signin> {
+  bool _obscureText = true;
+
+  void _togglePasswordVisibility() {
+    setState(() {
+      _obscureText = !_obscureText;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    var screenWidth = MediaQuery.of(context).size.width;
+    double screenWidth = MediaQuery.of(context).size.width;
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
@@ -59,7 +68,7 @@ class _SigninState extends State<Signin> {
                         fontFamily: "Poppins",
                         color: textSubtitle),
                     decoration: InputDecoration(
-                      labelText: 'Email',
+                      labelText: 'Username',
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.all(
                           Radius.circular(8.r),
@@ -89,11 +98,23 @@ class _SigninState extends State<Signin> {
                     height: 20.h,
                   ),
                   TextField(
+                    obscureText: _obscureText,
                     style: TextStyle(
                         fontSize: 13.sp,
                         fontFamily: "Poppins",
                         color: textSubtitle),
                     decoration: InputDecoration(
+                      // SHOW PAS
+
+                      suffixIcon: IconButton(
+                        icon: Icon(
+                          _obscureText
+                              ? Icons.visibility
+                              : Icons.visibility_off,
+                        ),
+                        onPressed: _togglePasswordVisibility,
+                      ),
+                      // SHOW PASS END
                       labelText: 'Password',
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.all(
@@ -135,7 +156,12 @@ class _SigninState extends State<Signin> {
                               BorderRadius.circular(8.r), // Rounded corners
                         ),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const Home()));
+                      },
                       child: const Text(
                         'Sign In',
                       ),
@@ -144,14 +170,12 @@ class _SigninState extends State<Signin> {
                   SizedBox(
                     height: 50.h,
                   ),
-                  Container(
-                    child: Text(
-                      'Or sign in with',
-                      style: TextStyle(
-                        fontSize: 13.sp,
-                        fontFamily: "Poppins",
-                        color: textSubtitle,
-                      ),
+                  Text(
+                    'Or sign in with',
+                    style: TextStyle(
+                      fontSize: 13.sp,
+                      fontFamily: "Poppins",
+                      color: textSubtitle,
                     ),
                   ),
                 ],

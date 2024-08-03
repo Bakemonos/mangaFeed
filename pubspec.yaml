@@ -26,8 +26,9 @@ flutter:
 
   assets:
     - assets/Icons/
-    - assets/Images/
     - assets/Logos/
+    - assets/Icons/navIcons/active/
+    - assets/Icons/navIcons/default/
 
   fonts:
     - family: Poppins

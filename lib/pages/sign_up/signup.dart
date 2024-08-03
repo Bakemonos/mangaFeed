@@ -12,9 +12,24 @@ class Signup extends StatefulWidget {
 }
 
 class _SignupState extends State<Signup> {
+  bool passwordVisible = true;
+  bool confirmPasswordVisible = true;
+
+  void _togglePasswordVisibility() {
+    setState(() {
+      passwordVisible = !passwordVisible;
+    });
+  }
+
+  void _toggleConfirmPasswordVisibility() {
+    setState(() {
+      confirmPasswordVisible = !confirmPasswordVisible;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    var screenWidth = MediaQuery.of(context).size.width;
+    double screenWidth = MediaQuery.of(context).size.width;
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
@@ -59,7 +74,7 @@ class _SignupState extends State<Signup> {
                         fontFamily: "Poppins",
                         color: textSubtitle),
                     decoration: InputDecoration(
-                      labelText: 'Email',
+                      labelText: 'Username',
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.all(
                           Radius.circular(8.r),
@@ -89,11 +104,20 @@ class _SignupState extends State<Signup> {
                     height: 20.h,
                   ),
                   TextField(
+                    obscureText: passwordVisible,
                     style: TextStyle(
                         fontSize: 13.sp,
                         fontFamily: "Poppins",
                         color: textSubtitle),
                     decoration: InputDecoration(
+                      suffixIcon: IconButton(
+                        icon: Icon(
+                          passwordVisible
+                              ? Icons.visibility
+                              : Icons.visibility_off,
+                        ),
+                        onPressed: _togglePasswordVisibility,
+                      ),
                       labelText: 'Password',
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.all(
@@ -118,11 +142,20 @@ class _SignupState extends State<Signup> {
                     height: 20.h,
                   ),
                   TextField(
+                    obscureText: confirmPasswordVisible,
                     style: TextStyle(
                         fontSize: 13.sp,
                         fontFamily: "Poppins",
                         color: textSubtitle),
                     decoration: InputDecoration(
+                      suffixIcon: IconButton(
+                        icon: Icon(
+                          confirmPasswordVisible
+                              ? Icons.visibility
+                              : Icons.visibility_off,
+                        ),
+                        onPressed: _toggleConfirmPasswordVisibility,
+                      ),
                       labelText: 'Confirm Password',
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.all(
@@ -173,14 +206,12 @@ class _SignupState extends State<Signup> {
                   SizedBox(
                     height: 50.h,
                   ),
-                  Container(
-                    child: Text(
-                      'Or sign in with',
-                      style: TextStyle(
-                        fontSize: 13.sp,
-                        fontFamily: "Poppins",
-                        color: textSubtitle,
-                      ),
+                  Text(
+                    'Or sign in with',
+                    style: TextStyle(
+                      fontSize: 13.sp,
+                      fontFamily: "Poppins",
+                      color: textSubtitle,
                     ),
                   ),
                 ],
