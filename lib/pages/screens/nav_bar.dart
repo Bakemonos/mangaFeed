@@ -40,6 +40,7 @@ class _HomeState extends State<Home> {
         ), // Ensure the shape is circular
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      //backgroundColor: themeColor,
       bottomNavigationBar: BottomAppBar(
         shape: const CircularNotchedRectangle(),
         notchMargin: 16.0, // Adjust the notch margin if needed
