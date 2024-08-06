@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:mangafeed/components/button.dart';
+import 'package:mangafeed/components/textField.dart';
+import 'package:mangafeed/components/textField_pass.dart';
+import 'package:mangafeed/pages/screens/dasboard.dart';
 import 'package:mangafeed/pages/sign_in/signin.dart';
 import 'package:mangafeed/properties.dart';
 
@@ -29,10 +33,10 @@ class _SignupState extends State<Signup> {
 
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
+        backgroundColor: backgroundColor,
         resizeToAvoidBottomInset: false,
         body: Padding(
           padding: EdgeInsets.symmetric(horizontal: 25.w, vertical: 25.h),
@@ -68,141 +72,20 @@ class _SignupState extends State<Signup> {
                   SizedBox(
                     height: 30.h,
                   ),
-                  TextField(
-                    style: TextStyle(
-                        fontSize: 13.sp,
-                        fontFamily: "Poppins",
-                        color: textSubtitle),
-                    decoration: InputDecoration(
-                      labelText: 'Username',
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(8.r),
-                        ),
-                        borderSide: const BorderSide(color: textFieldStroke),
-                      ),
-                      disabledBorder: OutlineInputBorder(
-                        borderSide: const BorderSide(color: textFieldStroke),
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(8.r),
-                        ),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(8.r),
-                        ),
-                        borderSide: const BorderSide(color: primarColor),
-                      ),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(8.r),
-                        ),
-                      ),
-                    ),
-                  ),
+                  const MyTextField(textLabel: 'Username'),
                   SizedBox(
                     height: 20.h,
                   ),
-                  TextField(
-                    obscureText: passwordVisible,
-                    style: TextStyle(
-                        fontSize: 13.sp,
-                        fontFamily: "Poppins",
-                        color: textSubtitle),
-                    decoration: InputDecoration(
-                      suffixIcon: IconButton(
-                        icon: Icon(
-                          passwordVisible
-                              ? Icons.visibility
-                              : Icons.visibility_off,
-                        ),
-                        onPressed: _togglePasswordVisibility,
-                      ),
-                      labelText: 'Password',
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(8.r),
-                        ),
-                        borderSide: const BorderSide(color: textFieldStroke),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(8.r),
-                        ),
-                        borderSide: const BorderSide(color: primarColor),
-                      ),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(8.r),
-                        ),
-                      ),
-                    ),
-                  ),
+                  const MyTextFieldPass(textLabel: 'Password'),
                   SizedBox(
                     height: 20.h,
                   ),
-                  TextField(
-                    obscureText: confirmPasswordVisible,
-                    style: TextStyle(
-                        fontSize: 13.sp,
-                        fontFamily: "Poppins",
-                        color: textSubtitle),
-                    decoration: InputDecoration(
-                      suffixIcon: IconButton(
-                        icon: Icon(
-                          confirmPasswordVisible
-                              ? Icons.visibility
-                              : Icons.visibility_off,
-                        ),
-                        onPressed: _toggleConfirmPasswordVisibility,
-                      ),
-                      labelText: 'Confirm Password',
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(8.r),
-                        ),
-                        borderSide: const BorderSide(color: textFieldStroke),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(8.r),
-                        ),
-                        borderSide: const BorderSide(color: primarColor),
-                      ),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(8.r),
-                        ),
-                      ),
-                    ),
-                  ),
+                  const MyTextFieldPass(textLabel: 'Confirm Password'),
                   SizedBox(
                     height: 30.h,
                   ),
-                  SizedBox(
-                    height: 48.h,
-                    width: screenWidth.w,
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: primarColor,
-                        foregroundColor: textLight,
-                        textStyle: TextStyle(
-                          fontSize: 16.sp,
-                          fontFamily: "Poppins",
-                        ),
-                        elevation: 5,
-                        shadowColor: textFieldStroke,
-                        shape: RoundedRectangleBorder(
-                          borderRadius:
-                              BorderRadius.circular(8.r), // Rounded corners
-                        ),
-                      ),
-                      onPressed: () {},
-                      child: const Text(
-                        'Sign Up',
-                      ),
-                    ),
-                  ),
+                  const MyButton(
+                      textButton: 'Sign Up', destinationScreen: Dasboard()),
                   SizedBox(
                     height: 50.h,
                   ),
@@ -278,17 +161,19 @@ class _SignupState extends State<Signup> {
                           height: 60.h,
                           child: Container(
                             decoration: BoxDecoration(
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: shadowColor.withOpacity(0.5),
-                                    spreadRadius: 2,
-                                    blurRadius: 4,
-                                    offset: const Offset(0, 2),
-                                  ),
-                                ],
-                                color: foregroundColor,
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(8.r))),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: shadowColor.withOpacity(0.5),
+                                  spreadRadius: 2,
+                                  blurRadius: 4,
+                                  offset: const Offset(0, 2),
+                                ),
+                              ],
+                              color: foregroundColor,
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(8.r),
+                              ),
+                            ),
                             child: SvgPicture.asset(
                               'assets/Icons/twitter.svg',
                               fit: BoxFit.none,

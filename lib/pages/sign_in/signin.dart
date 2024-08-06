@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:mangafeed/pages/screens/nav_bar.dart';
+import 'package:mangafeed/components/button.dart';
+import 'package:mangafeed/components/textField.dart';
+import 'package:mangafeed/components/textField_pass.dart';
+import 'package:mangafeed/pages/screens/dasboard.dart';
 import 'package:mangafeed/pages/sign_up/signup.dart';
 import 'package:mangafeed/properties.dart';
 
@@ -13,20 +16,12 @@ class Signin extends StatefulWidget {
 }
 
 class _SigninState extends State<Signin> {
-  bool _obscureText = true;
-
-  void _togglePasswordVisibility() {
-    setState(() {
-      _obscureText = !_obscureText;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
+        backgroundColor: backgroundColor,
         resizeToAvoidBottomInset: false,
         body: Padding(
           padding: EdgeInsets.symmetric(horizontal: 25.w, vertical: 25.h),
@@ -62,111 +57,18 @@ class _SigninState extends State<Signin> {
                   SizedBox(
                     height: 30.h,
                   ),
-                  TextField(
-                    style: TextStyle(
-                        fontSize: 13.sp,
-                        fontFamily: "Poppins",
-                        color: textSubtitle),
-                    decoration: InputDecoration(
-                      labelText: 'Username',
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(8.r),
-                        ),
-                        borderSide: const BorderSide(color: textFieldStroke),
-                      ),
-                      disabledBorder: OutlineInputBorder(
-                        borderSide: const BorderSide(color: textFieldStroke),
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(8.r),
-                        ),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(8.r),
-                        ),
-                        borderSide: const BorderSide(color: primarColor),
-                      ),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(8.r),
-                        ),
-                      ),
-                    ),
-                  ),
+                  const MyTextField(textLabel: 'Username'),
                   SizedBox(
                     height: 20.h,
                   ),
-                  TextField(
-                    obscureText: _obscureText,
-                    style: TextStyle(
-                        fontSize: 13.sp,
-                        fontFamily: "Poppins",
-                        color: textSubtitle),
-                    decoration: InputDecoration(
-                      // SHOW PAS
-
-                      suffixIcon: IconButton(
-                        icon: Icon(
-                          _obscureText
-                              ? Icons.visibility
-                              : Icons.visibility_off,
-                        ),
-                        onPressed: _togglePasswordVisibility,
-                      ),
-                      // SHOW PASS END
-                      labelText: 'Password',
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(8.r),
-                        ),
-                        borderSide: const BorderSide(color: textFieldStroke),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(8.r),
-                        ),
-                        borderSide: const BorderSide(color: primarColor),
-                      ),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(8.r),
-                        ),
-                      ),
-                    ),
+                  const MyTextFieldPass(
+                    textLabel: 'Password',
                   ),
                   SizedBox(
                     height: 30.h,
                   ),
-                  SizedBox(
-                    height: 48.h,
-                    width: screenWidth.w,
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: primarColor,
-                        foregroundColor: textLight,
-                        textStyle: TextStyle(
-                          fontSize: 16.sp,
-                          fontFamily: "Poppins",
-                        ),
-                        elevation: 5,
-                        shadowColor: textFieldStroke,
-                        shape: RoundedRectangleBorder(
-                          borderRadius:
-                              BorderRadius.circular(8.r), // Rounded corners
-                        ),
-                      ),
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const Home()));
-                      },
-                      child: const Text(
-                        'Sign In',
-                      ),
-                    ),
-                  ),
+                  const MyButton(
+                      textButton: 'Sign In', destinationScreen: Dasboard()),
                   SizedBox(
                     height: 50.h,
                   ),

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:mangafeed/components/friendIcon.dart';
+import 'package:mangafeed/components/friendPost.dart';
 import 'package:mangafeed/properties.dart';
 
 class Dasboard extends StatefulWidget {
@@ -27,6 +29,7 @@ class _DasboardState extends State<Dasboard> {
             Padding(
               padding: const EdgeInsets.only(right: 25.0),
               child: SvgPicture.asset(
+                width: 24.w,
                 'assets/Icons/activeNotif.svg',
               ),
             ),
@@ -56,6 +59,11 @@ class _DasboardState extends State<Dasboard> {
                 height: 1,
                 width: screenWidth,
               ),
+              SizedBox(
+                height: 10.h,
+              ),
+              const FriendsList(),
+              const MyFriendPost(),
             ],
           ),
         ));

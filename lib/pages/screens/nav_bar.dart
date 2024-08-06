@@ -5,6 +5,7 @@ import 'package:mangafeed/pages/screens/dasboard.dart';
 import 'package:mangafeed/pages/screens/messages.dart';
 import 'package:mangafeed/pages/screens/profile.dart';
 import 'package:mangafeed/pages/screens/search.dart';
+import 'package:mangafeed/properties.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -28,11 +29,13 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: backgroundColor,
       body: PageStorage(
         bucket: bucket,
         child: currentScreen,
       ),
       floatingActionButton: FloatingActionButton(
+        backgroundColor: themeColor,
         onPressed: () {},
         shape: const CircleBorder(),
         child: const Icon(
@@ -42,6 +45,7 @@ class _HomeState extends State<Home> {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       //backgroundColor: themeColor,
       bottomNavigationBar: BottomAppBar(
+        color: naviColor,
         shape: const CircularNotchedRectangle(),
         notchMargin: 16.0, // Adjust the notch margin if needed
         child: SizedBox(
@@ -70,6 +74,7 @@ class _HomeState extends State<Home> {
                     ),
                   ),
                   MaterialButton(
+                    
                     minWidth: 60.w,
                     onPressed: () {
                       setState(() {

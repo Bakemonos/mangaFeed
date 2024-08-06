@@ -27,6 +27,8 @@ flutter:
   assets:
     - assets/Icons/
     - assets/Logos/
+    - assets/Images/
+    - assets/Icons/postIcons/
     - assets/Icons/navIcons/active/
     - assets/Icons/navIcons/default/
 
