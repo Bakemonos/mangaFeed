@@ -20,4 +20,4 @@ const textFieldStroke = Color(0xFFFFAFAF);
 const shadowColor = Color(0xFFA69E9E);
 
 // NAVIGATION COLOR
-const naviColor = Color(0xFFFFF0F0);
+const naviColor = Color(0xFFFFE0E0);

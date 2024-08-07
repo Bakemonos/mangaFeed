@@ -17,55 +17,67 @@ class _DasboardState extends State<Dasboard> {
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
-        appBar: AppBar(
-          automaticallyImplyLeading: false,
-          centerTitle: true,
-          toolbarHeight: 80.h,
-          title: SvgPicture.asset(
+      appBar: AppBar(
+        forceMaterialTransparency: true,
+        automaticallyImplyLeading: false,
+        centerTitle: true,
+        toolbarHeight: 60.h,
+        title: Padding(
+          padding: EdgeInsets.only(top: 20.h),
+          child: SvgPicture.asset(
             'assets/Logos/mangaLogo.svg',
             width: 186.w,
           ),
-          actions: [
-            Padding(
-              padding: const EdgeInsets.only(right: 25.0),
-              child: SvgPicture.asset(
-                width: 24.w,
-                'assets/Icons/activeNotif.svg',
-              ),
-            ),
-          ],
         ),
-        body: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 25.w),
-          child: Column(
-            children: [
-              Container(
-                alignment: Alignment.topLeft,
-                child: const Text(
-                  'Discover',
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontFamily: "Poppins",
-                    fontWeight: FontWeight.w500,
-                    color: textColor,
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 25.0),
+            child: SvgPicture.asset(
+              width: 24.w,
+              'assets/Icons/activeNotif.svg',
+            ),
+          ),
+        ],
+      ),
+      body: Column(
+        children: [
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 25.w),
+            child: Column(
+              children: [
+                SizedBox(
+                  height: 10.h,
+                ),
+                Container(
+                  alignment: Alignment.topLeft,
+                  child: Text(
+                    'Discover',
+                    style: TextStyle(
+                      fontSize: 16.sp,
+                      fontFamily: "Poppins",
+                      fontWeight: FontWeight.w500,
+                      color: textColor,
+                    ),
                   ),
                 ),
-              ),
-              SizedBox(
-                height: 5.h,
-              ),
-              Container(
-                color: textFieldStroke,
-                height: 1,
-                width: screenWidth,
-              ),
-              SizedBox(
-                height: 10.h,
-              ),
-              const FriendsList(),
-              const MyFriendPost(),
-            ],
+                SizedBox(
+                  height: 5.h,
+                ),
+                Container(
+                  color: textFieldStroke,
+                  height: 1,
+                  width: screenWidth,
+                ),
+              ],
+            ),
           ),
-        ));
+          SizedBox(
+            height: 10.h,
+          ),
+          const FriendsList(),
+          const MyFriendPost(),
+        ],
+      ),
+    );
   }
 }

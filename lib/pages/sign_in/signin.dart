@@ -4,7 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:mangafeed/components/button.dart';
 import 'package:mangafeed/components/textField.dart';
 import 'package:mangafeed/components/textField_pass.dart';
-import 'package:mangafeed/pages/screens/dasboard.dart';
+import 'package:mangafeed/pages/screens/nav_bar.dart';
 import 'package:mangafeed/pages/sign_up/signup.dart';
 import 'package:mangafeed/properties.dart';
 
@@ -68,7 +68,7 @@ class _SigninState extends State<Signin> {
                     height: 30.h,
                   ),
                   const MyButton(
-                      textButton: 'Sign In', destinationScreen: Dasboard()),
+                      textButton: 'Sign In', destinationScreen: Home()),
                   SizedBox(
                     height: 50.h,
                   ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mangafeed/properties.dart';
 
 class FriendsList extends StatelessWidget {
@@ -6,8 +7,7 @@ class FriendsList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.symmetric(vertical: 10.0),
+    return SizedBox(
       height: 100.0,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
@@ -19,19 +19,22 @@ class FriendsList extends StatelessWidget {
                   // Handle button press
                   print('Circle button pressed');
                 },
-                child: const SizedBox(
-                  width: 70.0, // Adjust the width as needed
-                  child: Column(
-                    children: [
-                      CircleAvatar(
-                        radius: 30.0,
-                        backgroundColor: themeColor, // Customize button color
-                        child: Icon(
-                          Icons.add, // Customize icon as needed
-                          color: Colors.white,
+                child: Padding(
+                  padding: EdgeInsets.only(left: 20.w),
+                  child: const SizedBox(
+                    width: 70.0, // Adjust the width as needed
+                    child: Column(
+                      children: [
+                        CircleAvatar(
+                          radius: 30.0,
+                          backgroundColor: themeColor, // Customize button color
+                          child: Icon(
+                            Icons.add, // Customize icon as needed
+                            color: Colors.white,
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ));
           } else {
