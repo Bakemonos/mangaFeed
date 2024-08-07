@@ -29,6 +29,8 @@ flutter:
     - assets/Logos/
     - assets/Images/
     - assets/Icons/Active/
+    - assets/Icons/postIcons/
+    - assets/Icons/postIcons/
 
   fonts:
     - family: Poppins

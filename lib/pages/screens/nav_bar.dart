@@ -160,7 +160,7 @@ Widget navIcon(String icon, Color color) {
 
 Widget activeIcon(String iconName, Color color) {
   return SvgPicture.asset(
-    'assets/Icons/navIcons/active/$iconName',
+    'assets/Icons/Active/$iconName',
     color: color,
   );
 }
