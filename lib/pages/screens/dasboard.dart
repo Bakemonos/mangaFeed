@@ -5,40 +5,45 @@ import 'package:mangafeed/components/friendIcon.dart';
 import 'package:mangafeed/components/friendPost.dart';
 import 'package:mangafeed/properties.dart';
 
-class Dasboard extends StatefulWidget {
-  const Dasboard({super.key});
+class Dashboard extends StatefulWidget {
+  const Dashboard({super.key});
 
   @override
-  State<Dasboard> createState() => _DasboardState();
+  State<Dashboard> createState() => _DasboardState();
 }
 
-class _DasboardState extends State<Dasboard> {
+class _DasboardState extends State<Dashboard> {
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
-      appBar: AppBar(
-        forceMaterialTransparency: true,
-        automaticallyImplyLeading: false,
-        centerTitle: true,
-        toolbarHeight: 60.h,
-        title: Padding(
-          padding: EdgeInsets.only(top: 20.h),
-          child: SvgPicture.asset(
-            'assets/Logos/mangaLogo.svg',
-            width: 186.w,
-          ),
-        ),
-        actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 25.0),
+        body: NestedScrollView(
+      floatHeaderSlivers: true,
+      headerSliverBuilder: (context, innerBoxIsScrolled) => [
+        SliverAppBar(
+          floating: true,
+          snap: true,
+          centerTitle: true,
+          toolbarHeight: 60.h,
+          forceMaterialTransparency: true,
+          automaticallyImplyLeading: false,
+          title: Padding(
+            padding: EdgeInsets.only(top: 20.h),
             child: SvgPicture.asset(
-              width: 24.w,
-              'assets/Icons/activeNotif.svg',
+              'assets/Logos/mangaLogo.svg',
             ),
           ),
-        ],
-      ),
+          actions: [
+            Padding(
+              padding: const EdgeInsets.only(right: 25.0, top: 20),
+              child: SvgPicture.asset(
+                width: 30.w,
+                'assets/Icons/activeNotif.svg',
+              ),
+            ),
+          ],
+        ),
+      ],
       body: Column(
         children: [
           Padding(
@@ -46,7 +51,7 @@ class _DasboardState extends State<Dasboard> {
             child: Column(
               children: [
                 SizedBox(
-                  height: 10.h,
+                  height: 20.h,
                 ),
                 Container(
                   alignment: Alignment.topLeft,
@@ -78,6 +83,6 @@ class _DasboardState extends State<Dasboard> {
           const MyFriendPost(),
         ],
       ),
-    );
+    ));
   }
 }

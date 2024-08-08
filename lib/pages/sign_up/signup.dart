@@ -85,7 +85,7 @@ class _SignupState extends State<Signup> {
                     height: 30.h,
                   ),
                   const MyButton(
-                      textButton: 'Sign Up', destinationScreen: Dasboard()),
+                      textButton: 'Sign Up', destinationScreen: Dashboard()),
                   SizedBox(
                     height: 50.h,
                   ),

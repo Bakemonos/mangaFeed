@@ -25,12 +25,12 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/Icons/
     - assets/Logos/
     - assets/Images/
+    - assets/Icons/   
     - assets/Icons/Active/
     - assets/Icons/postIcons/
-    - assets/Icons/postIcons/
+   
 
   fonts:
     - family: Poppins

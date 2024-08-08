@@ -1,6 +1,6 @@
 # mangafeed
 
-A new Flutter project.
+mangaFeed Social Media Application.
 
 ## Getting Started
 

@@ -20,14 +20,15 @@ class _HomeState extends State<Home> {
 
   int currentTab = 0;
   final List<Widget> screens = [
-    const Dasboard(),
+    const Dashboard(),
     const Search(),
     const Messages(),
     const Profile()
   ];
 
   final PageStorageBucket bucket = PageStorageBucket();
-  Widget currentScreen = const Dasboard(); // Set the initial screen to Dasboard
+  Widget currentScreen =
+      const Dashboard(); // Set the initial screen to Dasboard
 
   @override
   Widget build(BuildContext context) {
@@ -71,7 +72,7 @@ class _HomeState extends State<Home> {
                       minWidth: 60.w,
                       onPressed: () {
                         setState(() {
-                          currentScreen = const Dasboard();
+                          currentScreen = const Dashboard();
                           currentTab = 0;
                         });
                       },

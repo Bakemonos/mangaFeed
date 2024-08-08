@@ -15,7 +15,6 @@ class _MyFriendPostState extends State<MyFriendPost> {
   Widget build(BuildContext context) {
     return Expanded(
       child: ListView.builder(
-          scrollDirection: Axis.vertical,
           itemCount: 20,
           itemBuilder: (context, index) {
             return Padding(
