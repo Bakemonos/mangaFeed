@@ -35,7 +35,6 @@ class _SigninState extends State<Signin> {
   Future<void> signInWithEmailAndPassword() async {
     FocusScope.of(context).unfocus();
 
-    // Check if the form is valid
     if (_formKey.currentState?.validate() ?? false) {
       try {
         await AuthService().signInWithEmailAndPassword(
@@ -48,10 +47,49 @@ class _SigninState extends State<Signin> {
           MaterialPageRoute(builder: (context) => const Home()),
         );
       } on FirebaseAuthException catch (e) {
+        String errorMessage;
+
+        switch (e.code) {
+          case 'wrong-password':
+            errorMessage =
+                'The password you entered is incorrect. Please try again.';
+            break;
+          case 'user-not-found':
+            errorMessage =
+                'No user found with this email. Please check and try again.';
+            break;
+          case 'invalid-email':
+            errorMessage =
+                'The email address is not valid. Please enter a valid email.';
+            break;
+          case 'user-disabled':
+            errorMessage =
+                'This user has been disabled. Please contact support.';
+            break;
+          case 'too-many-requests':
+            errorMessage =
+                'You have made too many attempts. Please try again later.';
+            break;
+          case 'expired-action-code':
+            errorMessage =
+                'The link you used has expired. Please request a new one.';
+            break;
+          case 'invalid-action-code':
+            errorMessage = 'The action code is invalid. Please try again.';
+            break;
+          case 'invalid-credential':
+            errorMessage =
+                'The supplied credential is malformed or has expired.';
+            break;
+          default:
+            errorMessage = 'An unexpected error occurred: ${e.message}';
+            break;
+        }
+
         setState(() {
-          errorMessage = 'Invalid email or password. Please try again.';
+          this.errorMessage = errorMessage;
         });
-        _showErrorDialog(errorMessage!, 'Error');
+        _showErrorDialog(errorMessage, 'Error');
       } on PlatformException catch (e) {
         setState(() {
           errorMessage =
@@ -90,6 +128,7 @@ class _SigninState extends State<Signin> {
       child: Scaffold(
         backgroundColor: backgroundColor,
         resizeToAvoidBottomInset: false,
+      
         body: Padding(
           padding: EdgeInsets.symmetric(horizontal: 25.w, vertical: 25.h),
           child: Form(

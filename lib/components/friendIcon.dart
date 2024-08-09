@@ -4,7 +4,7 @@ import 'package:mangafeed/properties.dart';
 
 class FriendsList extends StatelessWidget {
   const FriendsList({super.key});
-
+ 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
