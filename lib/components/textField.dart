@@ -5,14 +5,18 @@ import 'package:mangafeed/properties.dart';
 class MyTextField extends StatelessWidget {
   final TextEditingController? controller;
   final String textLabel;
+  final String? Function(String?)? validator; // Add validator parameter
 
-  const MyTextField(
-      {super.key, required this.textLabel, required this.controller});
+  const MyTextField({
+    super.key,
+    required this.textLabel,
+    required this.controller,
+    this.validator, // Initialize validator parameter
+  });
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
-      
+    return TextFormField(
       controller: controller,
       style: TextStyle(
           fontSize: 13.sp, fontFamily: "Poppins", color: textSubtitle),
@@ -42,6 +46,7 @@ class MyTextField extends StatelessWidget {
           ),
         ),
       ),
+      validator: validator, // Use validator here
     );
   }
 }

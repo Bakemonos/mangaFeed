@@ -11,7 +11,7 @@ class MyButton extends StatelessWidget {
     required this.textButton,
     required this.onPressed,
   });
-
+ 
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;

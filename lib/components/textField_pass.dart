@@ -5,11 +5,13 @@ import 'package:mangafeed/properties.dart';
 class MyTextFieldPass extends StatefulWidget {
   final TextEditingController? controller;
   final String textLabel;
+  final String? Function(String?)? validator; // Add validator parameter
 
   const MyTextFieldPass({
     super.key,
     required this.textLabel,
     required this.controller,
+    this.validator, // Initialize validator parameter
   });
 
   @override
@@ -27,7 +29,7 @@ class _MyTextFieldPassState extends State<MyTextFieldPass> {
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return TextFormField(
       controller: widget.controller,
       obscureText: obscureText,
       style: TextStyle(
@@ -59,6 +61,7 @@ class _MyTextFieldPassState extends State<MyTextFieldPass> {
           ),
         ),
       ),
+      validator: widget.validator, // Use validator here
     );
   }
 }
