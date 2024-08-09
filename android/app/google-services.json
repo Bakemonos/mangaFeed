@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "756752798511",
+    "project_id": "mangafeed-a7bea",
+    "storage_bucket": "mangafeed-a7bea.appspot.com"
+  },
+  "client": [
+    { 
+      "client_info": {
+        "mobilesdk_app_id": "1:756752798511:android:54446b6eddac3703ccc7da",
+        "android_client_info": {
+          "package_name": "com.example.mangafeed"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDwYNlIoZuXkdTG2vuNmjzQXrqnAtYVd0c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

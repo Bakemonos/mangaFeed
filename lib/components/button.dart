@@ -2,18 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mangafeed/properties.dart';
 
-class MyButton extends StatefulWidget {
+class MyButton extends StatelessWidget {
+  final Function() onPressed;
   final String textButton;
-  final Widget destinationScreen;
 
-  const MyButton(
-      {super.key, required this.textButton, required this.destinationScreen});
+  const MyButton({
+    super.key,
+    required this.textButton,
+    required this.onPressed,
+  });
 
-  @override
-  State<MyButton> createState() => _MyButtonState();
-}
-
-class _MyButtonState extends State<MyButton> {
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
@@ -21,14 +19,7 @@ class _MyButtonState extends State<MyButton> {
       height: 48.h,
       width: screenWidth.w,
       child: ElevatedButton(
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => widget.destinationScreen,
-            ),
-          );
-        },
+        onPressed: onPressed,
         style: ElevatedButton.styleFrom(
           backgroundColor: primarColor,
           foregroundColor: textLight,
@@ -43,7 +34,7 @@ class _MyButtonState extends State<MyButton> {
           ),
         ),
         child: Text(
-          widget.textButton,
+          textButton,
           style: TextStyle(
             color: textLight,
             fontSize: 16.sp,
@@ -55,5 +46,3 @@ class _MyButtonState extends State<MyButton> {
     );
   }
 }
-
-

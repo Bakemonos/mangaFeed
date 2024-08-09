@@ -3,13 +3,17 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mangafeed/properties.dart';
 
 class MyTextField extends StatelessWidget {
+  final TextEditingController? controller;
   final String textLabel;
 
-  const MyTextField({super.key, required this.textLabel});
+  const MyTextField(
+      {super.key, required this.textLabel, required this.controller});
 
   @override
   Widget build(BuildContext context) {
     return TextField(
+      
+      controller: controller,
       style: TextStyle(
           fontSize: 13.sp, fontFamily: "Poppins", color: textSubtitle),
       decoration: InputDecoration(

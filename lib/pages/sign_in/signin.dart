@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:mangafeed/components/button.dart';
+import 'package:mangafeed/components/supportOption.dart';
 import 'package:mangafeed/components/textField.dart';
 import 'package:mangafeed/components/textField_pass.dart';
 import 'package:mangafeed/pages/screens/nav_bar.dart';
 import 'package:mangafeed/pages/sign_up/signup.dart';
 import 'package:mangafeed/properties.dart';
+import 'package:mangafeed/services/auth.dart';
 
 class Signin extends StatefulWidget {
   const Signin({super.key});
@@ -16,6 +18,17 @@ class Signin extends StatefulWidget {
 }
 
 class _SigninState extends State<Signin> {
+  final _auth = AuthService();
+
+  final _email = TextEditingController();
+  final _password = TextEditingController();
+  @override
+  void dispose() {
+    super.dispose();
+    _email.dispose();
+    _password.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -31,7 +44,7 @@ class _SigninState extends State<Signin> {
               Column(
                 children: [
                   SizedBox(
-                    height: 100.h,
+                    height: 80.h,
                   ),
                   Container(
                     alignment: Alignment.center,
@@ -51,24 +64,32 @@ class _SigninState extends State<Signin> {
                           color: textSubtitle,
                           fontSize: 18.sp,
                           fontFamily: "Poppins",
-                          fontWeight: FontWeight.bold),
+                          fontWeight: FontWeight.w500),
                     ),
                   ),
                   SizedBox(
                     height: 30.h,
                   ),
-                  const MyTextField(textLabel: 'Username'),
+                  MyTextField(
+                    textLabel: 'Email',
+                    controller: _email,
+                  ),
                   SizedBox(
                     height: 20.h,
                   ),
-                  const MyTextFieldPass(
+                  MyTextFieldPass(
                     textLabel: 'Password',
+                    controller: _password,
                   ),
                   SizedBox(
                     height: 30.h,
                   ),
-                  const MyButton(
-                      textButton: 'Sign In', destinationScreen: Home()),
+                  MyButton(
+                    textButton: 'Sign In',
+                    onPressed: () {
+                      _signUp();
+                    },
+                  ),
                   SizedBox(
                     height: 50.h,
                   ),
@@ -84,86 +105,10 @@ class _SigninState extends State<Signin> {
               ),
               Column(
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Expanded(
-                        child: SizedBox(
-                          height: 60.h,
-                          child: Container(
-                            decoration: BoxDecoration(
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: shadowColor.withOpacity(0.5),
-                                    spreadRadius: 2,
-                                    blurRadius: 4,
-                                    offset: const Offset(0, 2),
-                                  ),
-                                ],
-                                color: foregroundColor,
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(8.r))),
-                            child: SvgPicture.asset(
-                              'assets/Icons/google.svg',
-                              fit: BoxFit.none,
-                            ),
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        width: 8.w,
-                      ),
-                      Expanded(
-                        child: SizedBox(
-                          height: 60.h,
-                          child: Container(
-                            decoration: BoxDecoration(
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: shadowColor.withOpacity(0.5),
-                                    spreadRadius: 2,
-                                    blurRadius: 4,
-                                    offset: const Offset(0, 2),
-                                  ),
-                                ],
-                                color: foregroundColor,
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(8.r))),
-                            child: SvgPicture.asset(
-                              'assets/Icons/facebook.svg',
-                              fit: BoxFit.none,
-                            ),
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        width: 8.w,
-                      ),
-                      Expanded(
-                        child: SizedBox(
-                          height: 60.h,
-                          child: Container(
-                            decoration: BoxDecoration(
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: shadowColor.withOpacity(0.5),
-                                    spreadRadius: 2,
-                                    blurRadius: 4,
-                                    offset: const Offset(0, 2),
-                                  ),
-                                ],
-                                color: foregroundColor,
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(8.r))),
-                            child: SvgPicture.asset(
-                              'assets/Icons/twitter.svg',
-                              fit: BoxFit.none,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
+                  const MySupportOption(
+                      icon1: 'googleIcon.svg',
+                      icon2: 'facebookIcon.svg',
+                      icon3: 'twitterIcon.svg'),
                   SizedBox(
                     height: 30.h,
                   ),
@@ -182,9 +127,11 @@ class _SigninState extends State<Signin> {
                       ),
                       GestureDetector(
                         onTap: () => Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const Signup())),
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const Signup(),
+                          ),
+                        ),
                         child: Text('Sign Up',
                             style: TextStyle(
                                 fontSize: 13.sp,
@@ -200,5 +147,44 @@ class _SigninState extends State<Signin> {
         ),
       ),
     );
+  }
+
+  _login() async {
+    final user =
+        await _auth.loginUserWithEmailAndPassword(_email.text, _password.text);
+
+    if (user != null) {
+      _showDialog(
+        'Success',
+        'User Logged Succesfuly',
+        () {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => const Home()));
+        },
+      );
+    }
+  }
+
+  void _showDialog(String title, String message, Function() onPressed,
+      {bool navigateToSignin = false}) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(title),
+          content: Text(message),
+          actions: [
+            TextButton(
+              onPressed: onPressed,
+              child: const Text('OK'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void _signUp() {
+    _auth.createUserWithEmailAndPassword(_email.text, _password.text);
   }
 }

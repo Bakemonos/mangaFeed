@@ -11,7 +11,7 @@ class FriendsList extends StatelessWidget {
       height: 100.0,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
-        itemCount: 20,
+        itemCount: 10,
         itemBuilder: (context, index) {
           if (index == 0) {
             return GestureDetector(

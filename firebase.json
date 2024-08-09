@@ -1,0 +1,6 @@
+{
+  "firestore": {
+    "rules": "com.example.mangafeed",
+    "indexes": "firestore.indexes.json"
+  }
+}
