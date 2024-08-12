@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mangafeed/properties.dart';
@@ -17,7 +19,7 @@ class FriendsList extends StatelessWidget {
             return GestureDetector(
                 onTap: () {
                   // Handle button press
-                  print('Circle button pressed');
+                  log('Circle button pressed');
                 },
                 child: Padding(
                   padding: EdgeInsets.only(left: 20.w),

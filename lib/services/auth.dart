@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -14,7 +16,7 @@ class AuthService {
     try {
       await _firestore.collection('users').doc(uid).set(data);
     } catch (e) {
-      print('Error creating user in Firestore: $e');
+      log('Error creating user in Firestore: $e');
     }
   }
 
@@ -22,7 +24,7 @@ class AuthService {
     try {
       return await _firestore.collection('users').doc(uid).get();
     } catch (e) {
-      print('Error getting user from Firestore: $e');
+      log('Error getting user from Firestore: $e');
       rethrow;
     }
   }
@@ -32,7 +34,7 @@ class AuthService {
     try {
       await _firestore.collection('users').doc(uid).update(data);
     } catch (e) {
-      print('Error updating user in Firestore: $e');
+      log('Error updating user in Firestore: $e');
     }
   }
 
@@ -40,7 +42,7 @@ class AuthService {
     try {
       await _firestore.collection('users').doc(uid).delete();
     } catch (e) {
-      print('Error deleting user from Firestore: $e');
+      log('Error deleting user from Firestore: $e');
     }
   }
 
